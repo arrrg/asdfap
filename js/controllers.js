@@ -16,11 +16,10 @@ function FBItem($scope) {
   		alert('Your name is ' + response.name);
   		$scope.item = response;
 	});
-  });
 
 
- 
   //$scope.orderProp = 'age';
 }
+FBItem.$inject = [];
 
 }
