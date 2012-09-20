@@ -51,8 +51,17 @@ StackMob.init({
 
         // respond to clicks on the login and logout links
         document.getElementById('auth-loginlink').addEventListener('click', function(){
-          FB.login();
-        });
+            FB.login(function(response) {
+            if (response.authResponse) {
+              var accessToken = response.authResponse.accessToken;
+              FB.api('/me', function(response) {
+                var user = new StackMob.User({ username: response.email });
+                user.createUserWithFacebook(accessToken);
+              });
+            } else {
+              console.log('User cancelled login or did not fully authorize.');
+            }
+          }, {scope: 'email, user_likes'});
         document.getElementById('auth-logoutlink').addEventListener('click', function(){
           FB.logout();
         });	
