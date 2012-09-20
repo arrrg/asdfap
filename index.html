@@ -62,7 +62,7 @@ StackMob.init({
               console.log('User cancelled login or did not fully authorize.');
             }
           }, {scope: 'email, user_likes'}; 
-        }
+        
         );
         document.getElementById('auth-logoutlink').addEventListener('click', function(){
           FB.logout();
